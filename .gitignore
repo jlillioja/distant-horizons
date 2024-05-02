@@ -1,0 +1,66 @@
+# System files #
+################
+.DS_Store
+Thumbs.db
+
+# Compiled source #
+###################
+*.class
+
+# Packaged Files #
+##################
+*.jar
+*.war
+*.zip
+*.tar.gz
+*.rar
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE and Editor folders #
+##########################
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build directories #
+#####################
+bin/
+out/
+build/
+dist/
+
+# Minecraft files to ignore #
+############################
+# Exclude all world save directories
+world/
+worlds/
+saves/
+
+# Exclude potential backup directories
+backups/
+
+# User-specific configurations
+userconfig/
+
+# Modpack instance files
+instances/
+
+# Avoid tracking crash-reports
+crash-reports/
+crash-logs/
+
+# Logs generally contain only runtime information
+logs/
