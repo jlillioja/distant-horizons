@@ -25,7 +25,7 @@ mc() {
     git --no-pager pull origin master
     
     # Always print the git log before checking for script updates
-    git log -1
+    git --no-pager log -1
     
     # Check if there have been any changes to the script after pulling
     if git --no-pager diff --name-only "$current_head"..HEAD | grep -q "$SCRIPT_NAME"; then
