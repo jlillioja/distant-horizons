@@ -12,14 +12,29 @@ fi
 
 # Get the absolute directory path of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 
 # Define the mc function with the resolved script directory
 mc() {
+    local script_path="$SCRIPT_DIR/$SCRIPT_NAME"
     cd "$SCRIPT_DIR"
+
+    # Store the current HEAD for comparison after pulling
+    local current_head=$(git rev-parse HEAD)
+
     git --no-pager pull origin master
-    git --no-pager log -1 --format='%cd | %an | %s'
+    
+    # Always print the git log before checking for script updates
+    git log -1
+    
+    # Check if there have been any changes to the script after pulling
+    if git --no-pager diff --name-only "$current_head"..HEAD | grep -q "$SCRIPT_NAME"; then
+        echo "$SCRIPT_NAME has been updated since $current_head. Please rerun the command to use the updated version."
+        return 0  # Exit the function successfully without executing further
+    fi
+
     for world_dir in saves/*/; do
-        datapack_dir="${world_dir}datapacks"
+        local datapack_dir="${world_dir}datapacks"
         # Check if the datapacks directory exists, if not, create it
         if [ ! -d "$datapack_dir" ]; then
             mkdir -p "$datapack_dir"
