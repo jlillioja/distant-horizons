@@ -9,7 +9,6 @@ Thumbs.db
 
 # Packaged Files #
 ##################
-*.jar
 *.war
 *.zip
 *.tar.gz
